@@ -1,0 +1,147 @@
+
+* {
+    font-family: 'Roboto';
+}
+table,th,tr,td {
+ border: 1px solid rgba(0,0,0,.12);/*1px solid black;*/
+ border-collapse:collapse;
+ padding:0.5em;
+}
+
+.table {
+    overflow: scroll;
+    margin:0;
+    padding:0;
+  }
+  td {
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,.12);
+    height: 1.2em;
+  }
+  table div {
+    width: 200px;
+  }
+
+  .weekbus {
+      width: 3.5em!important;
+  }
+
+  .weekbus>b, tr[class*="master"] td, tr[class*="child"] td {
+    font-size: 12px;
+  }
+
+
+  .rmt-font-family{
+    font-family: 'Roboto';
+    font-size: 12px;
+  }
+  .sticky {
+    position: absolute;
+  }
+  .tall {height: 3.4em}
+
+  tr[class*="master"]>td[class*="sticky"]  {
+    text-align:left;
+}
+
+tr[class*="master"]>td, tr[class*="child"]>td   {
+    /* padding-left: 1em; */
+    width:200px;
+    height:1.2em;
+}
+
+.stickyActivity {
+    position: absolute;
+    width:200px;
+    height:1.2em;
+    font-size: 12px;
+}
+
+.view-all-resource {
+    height:5.7em;
+    display: flex;
+    align-items: center;
+}
+
+#userName {
+    text-align: left;
+    padding-left:10em;
+    background: #BDBDBD;
+    color: #00897b;
+    font-family: Roboto;
+    font-weight: normal;
+}
+
+.timeline-headers {
+    background:#BDBDBD;
+    color:#00897b;
+    font-family: Roboto;
+    font-weight: normal;
+}
+
+.view-all-resource>div>button {
+    background: #00897b;
+    border: none;
+    font-size: 14px;
+    padding: 0.5em;
+    color:#ffffff;
+    border-radius:10px;
+}
+
+.rmt-large-button {
+    background: #00897b;
+    border: none;
+    font-size: 14px;
+    padding: 0.5em 1em;
+    color:#ffffff;
+    border-radius:10px;
+}
+
+#filterBar
+{
+    display: flex;
+}
+.filter button {
+    margin:0em 0.5em;
+}
+.filter {
+    text-align: left;
+}
+
+.capacity-1{
+    background: blue;
+    color: white;
+    box-shadow: 2px 2px 2px #888888;
+}
+
+.capacity-2{
+    background: dodgerblue;
+    color: white;
+    box-shadow: 2px 2px 2px #888888;
+}
+.capacity-3{
+    background: limegreen;
+    color: white;
+    box-shadow: 2px 2px 2px #888888;
+}
+.capacity-4{
+    background: orangered;
+    color: white;
+    box-shadow: 2px 2px 2px #888888;
+}
+.capacity-5{
+    background: red;
+    color: white;
+    box-shadow: 2px 2px 2px #888888;
+}
+.activity-1{
+    background: slateblue;
+    color: white;
+    box-shadow: 2px 2px 2px #888888;
+}
+.activity-2{
+    background: gray;
+    color: #ffffff;
+    box-shadow: 2px 2px 2px #888888;
+}

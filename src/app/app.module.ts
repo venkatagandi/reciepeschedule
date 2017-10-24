@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
+import { EntitlementService } from './services/entitlement.service';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [EntitlementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
