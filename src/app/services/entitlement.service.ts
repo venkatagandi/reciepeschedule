@@ -286,7 +286,7 @@ export class EntitlementService {
             {
               '10/30/2017':[
                 {activityid:1,activityname:'activity1',individualresourcehoursforadate:2},
-                {activityid:2,activityname:'activity2',individualresourcehoursforadate:4},
+                {activityid:2,activityname:'activity2',individualresourcehoursforadate:2},
                 {activityid:3,activityname:'activity3',individualresourcehoursforadate:2}
               ]
             },

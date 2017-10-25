@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResourceActivityDaily } from './model/resourceactvitydaily';
 import { EntitlementService } from './services/entitlement.service';
 import { UserIndividualDayActivityAggregate } from './model/userIndividualDayActivityAggregate';
+import { ResourceIndividualActivityMapping } from './model/resourceindividualactivitymapping';
 
 @Component({
   selector: 'app-root',
@@ -34,34 +35,34 @@ export class AppComponent implements OnInit{
           //console.log("==== week starts ======");
           //console.log(q[qprops]);
           q[qprops].map(r=>{
-            console.log("==== Individual week starts ======");
+            //console.log("==== Individual week starts ======");
             //let maps = r;
-            //console.log(maps.get("10/24/2017"));
+            ////console.log(maps.get("10/24/2017"));
             //this.daysVal.push(r);
             for(var propt in r){
-              console.log("==== Individual day starts ======");
-              //console.log('prp vals');
-              console.log('new type',typeof(propt));
+              //console.log("==== Individual day starts ======");
+              ////console.log('prp vals');
+              //console.log('new type',typeof(propt));
               //check if value exists already
-              console.log("=============If value exists already Starts=============");
-              console.log(this.daysVal);
-              console.log("=============If value exists already Ends=============");
+              //console.log("=============If value exists already Starts=============");
+              //console.log(this.daysVal);
+              //console.log("=============If value exists already Ends=============");
               if (this.daysVal.filter(item=> item == propt).length == 0){
                 this.daysVal.push(propt);
               }
-              console.log(propt + ': ' + r[propt]);
+              //console.log(propt + ': ' + r[propt]);
               r[propt].map(n=>{
-                console.log('======= Individual day values =======');
-                console.log(n);
+                //console.log('======= Individual day values =======');
+                //console.log(n);
               })
             }
-            //console.log(r);
+            ////console.log(r);
           })
 
         }
       });
-      //console.clear();
-      //console.log('your day vals is:',this.daysVal);
+      ////console.clear();
+      ////console.log('your day vals is:',this.daysVal);
      });
      this.evaluateDaysValForHeaders();
      this.evaluateIndividualUserHourRows();
@@ -69,12 +70,12 @@ export class AppComponent implements OnInit{
 
   evaluateDaysValForHeaders() {
     var size = 5;
-    console.log('days value is',this.daysVal);
+    //console.log('days value is',this.daysVal);
 
 
     for (var i=0; i<this.daysVal.length; i+=size) {
         var smallarray = this.daysVal.slice(i,i+size);
-        //console.log(smallarray);
+        ////console.log(smallarray);
         //var id = this.newDaysArray.length + 1;
         if (this.newDaysArray.filter(item=> item.startDate == smallarray[0]).length == 0){
           this.newDaysArray.push({startDate:smallarray[0],endDate:smallarray[smallarray.length-1]});
@@ -92,16 +93,22 @@ export class AppComponent implements OnInit{
     let individualuser:UserIndividualDayActivityAggregate={
       userFullName:'',
      IndividualHours:[],
-     resourcesid:''
+     resourcesid:'',
+     activitymap:undefined
      };
     individualuser.resourcesid = p.resourcesid;
     individualuser.userFullName = p.fullname;
 
     p.activityMap.map(q=>{
       for(var qprops in q){
+        console.log("====================MyQ==============");
+        console.log(qprops);
         q[qprops].map(r=>{
-
+          console.log("===========1===========");
+          console.log(r);
           for(var propt in r){
+            console.log("================2=========");
+            console.log(r[propt]);
             var result = r[propt].reduce(function(accumulator, currentValue) {
               return accumulator + currentValue.individualresourcehoursforadate;
             },0);
@@ -109,13 +116,46 @@ export class AppComponent implements OnInit{
             individualuser.IndividualHours.push({date:propt,totalhours:result})
           }
         })
-
       }
     });
+    individualuser.activitymap=p.activityMap;
     this.userIndividual.push(individualuser);
     ////console.clear();
     //console.log(this.userIndividual)
    });
+
+  }
+
+  userActivityInfo(user:UserIndividualDayActivityAggregate) {
+
+    let resourceindividualactivity:ResourceIndividualActivityMapping={
+      activity:undefined,
+      resourcesid:'',
+      date:''
+     };
+
+     console.log('clicked me');
+     console.log(user);
+     user.activitymap.map(q=>{
+      for(var qprops in q){
+        console.log("====================MyQ==============");
+        console.log(qprops);
+        q[qprops].map(r=>{
+          console.log("===========1===========");
+          console.log(r);
+          for(var propt in r){
+            console.log("================2=========");
+            console.log(r[propt]);
+
+          }
+        })
+      }
+    });
+
+
+
+
+
 
   }
 }
