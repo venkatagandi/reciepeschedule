@@ -20,6 +20,12 @@ export class AppComponent implements OnInit{
   useractivityIndividual:any[]=[];
   isActive:boolean=false;
 
+  //for monthlyfilter
+  newmonthVal:string[]=[];
+
+  //for yearlyfilter
+  newYearVal:string[]=[];
+
   /* button info for forecast mode - weekly,monthly,yearly*/
   forecastmodes: SelectItem[];
   selectForecastMode: string='Weekly';
@@ -82,6 +88,9 @@ export class AppComponent implements OnInit{
             //let maps = r;
             ////console.log(maps.get("10/24/2017"));
             //this.daysVal.push(r);
+            console.clear();
+            console.log("==============x starts===============");
+            console.log(r);
             for(var propt in r){
               //console.log("==== Individual day starts ======");
               ////console.log('prp vals');
@@ -109,11 +118,13 @@ export class AppComponent implements OnInit{
      });
      this.evaluateDaysValForHeaders();
      this.evaluateIndividualUserHourRows();
+     this.evaluateMonthlyValuesForHeaders();
+     this.evaluateYearlyValuesForHeaders();
   }
 
   evaluateDaysValForHeaders() {
     var size = 5;
-    //console.log('days value is',this.daysVal);
+    console.log('days value is',this.daysVal);
 
 
     for (var i=0; i<this.daysVal.length; i+=size) {
@@ -130,6 +141,33 @@ export class AppComponent implements OnInit{
     //console.clear();
     //this.newDaysArray.map(q=> console.log(q));
   }
+
+  evaluateMonthlyValuesForHeaders() {
+    let days =  this.daysVal.map(x=>{
+      let date = new Date(x);
+      return `${date.getMonth()}-${date.getFullYear()}`;
+    });
+    days = _.uniq(days);
+    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    days = days.map(p=>{
+      var arr:any = p.split('-');
+      let newIndex= arr[0]-1;
+      return `${months[newIndex]}-${p.split('-')[1]}`;
+    });
+    this.newmonthVal=days;
+
+  }
+
+  evaluateYearlyValuesForHeaders() {
+    let days =  this.daysVal.map(x=>{
+      let date = new Date(x);
+      return `${date.getFullYear()}`;
+    });
+    days = _.uniq(days);
+    this.newYearVal=days;
+
+  }
+
 
   evaluateIndividualUserHourRows() {
    this.entitledData.map(p=>{

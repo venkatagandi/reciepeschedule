@@ -23,11 +23,27 @@
             <button>View Other Resources</button>
           </div>
         </td>
+        <ng-container *ngIf="selectForecastMode==='Weekly'">
+          <th colspan="5"
+          *ngFor="let item of newDaysArray"
+          class="timeline-headers">
+            {{item.startDate | date:'dMMM'}} - {{item.endDate | date:'dMMM'}}
+          </th>
+        </ng-container>
+      <ng-container *ngIf="selectForecastMode ==='Monthly'">
         <th colspan="5"
-         *ngFor="let item of newDaysArray"
+        *ngFor="let item of newmonthVal"
         class="timeline-headers">
-          {{item.startDate | date:'dMMM'}} - {{item.endDate | date:'dMMM'}}
+          {{item}}
         </th>
+      </ng-container>
+      <ng-container *ngIf="selectForecastMode ==='Yearly'">
+          <th colspan="12"
+          *ngFor="let item of newYearVal"
+          class="timeline-headers">
+            {{item}}
+          </th>
+        </ng-container>
       </tr>
       <tr>
         <td  style="padding-right:4px;">
