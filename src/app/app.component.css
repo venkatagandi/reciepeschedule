@@ -13,11 +13,15 @@ table,th,tr,td {
     margin:0;
     padding:0;
   }
+  #resourceschedule {
+      border: none;
+  }
   td {
     text-align: center;
     background-color: #ffffff;
     border: 1px solid rgba(0,0,0,.12);
-    height: 1.2em;
+    height: 1.5em;
+    font-size: 12px;
   }
   table div {
     width: 200px;
@@ -48,7 +52,8 @@ table,th,tr,td {
 tr[class*="master"]>td, tr[class*="child"]>td   {
     /* padding-left: 1em; */
     width:200px;
-    height:1.2em;
+    height:1.5em;
+    min-width: 4em;
 }
 
 .stickyActivity {
@@ -107,6 +112,8 @@ tr[class*="master"]>td, tr[class*="child"]>td   {
 }
 .filter {
     text-align: left;
+    border: none;
+    padding:1em;
 }
 
 .capacity-1{
@@ -144,4 +151,26 @@ tr[class*="master"]>td, tr[class*="child"]>td   {
     background: gray;
     color: #ffffff;
     box-shadow: 2px 2px 2px #888888;
+}
+
+.ui-togglebutton.ui-button.ui-state-default,
+.ui-selectbutton .ui-button.ui-state-default {
+    border-radius: 6px 0 0 6px!important;
+}
+
+
+.header-dimensions {
+    background: lightgray;
+    font-weight: bold;
+    height: 2em;
+}
+
+.activityNM {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activityNM a {
+    color:#00897b;
 }

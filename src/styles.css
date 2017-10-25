@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+.ui-togglebutton.ui-button.ui-state-default,
+.ui-selectbutton .ui-button.ui-state-default:first-child {
+    border-radius: 6px 0 0 6px;
+}
+.ui-togglebutton.ui-button.ui-state-default,
+.ui-selectbutton .ui-button.ui-state-default:last-child {
+    border-radius: 0 6px 6px 0;
+}
+
+
+.ui-togglebutton.ui-button.ui-state-default,
+.ui-selectbutton .ui-button.ui-state-default {
+    border: 1px solid #00897b!important;
+    color:#00897b;
+}
+
+.ui-togglebutton.ui-button.ui-state-active, .ui-selectbutton .ui-button.ui-state-active {
+    border: 1px solid #00897b;
+    background: #00897b;
+    color: #FFFFFF;
+}

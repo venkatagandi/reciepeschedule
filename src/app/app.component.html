@@ -2,10 +2,23 @@
   <table id="resourceschedule">
     <thead>
       <tr class="filter">
-          <th class="filter"><button>Quick Schedule</button></th>
+          <th class="filter"><button class="rmt-large-button">Quick Schedule</button></th>
+          <th class="filter" [attr.colspan]="daysVal.length-1">
+            <p-selectButton [options]="forecastmodes" [(ngModel)]="selectForecastMode"
+            (onChange)="onSelectForecastModeChange($event)"></p-selectButton>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p-selectButton [options]="hoursModes" [(ngModel)]="selectHourMode"
+            (onChange)="onSelectHourModeChange($event)"></p-selectButton>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p-selectButton [options]="mapModes" [(ngModel)]="selectMapMode"
+            (onChange)="onSelectMapModeChange($event)"></p-selectButton>
+
+          </th>
       </tr>
       <tr>
-        <td class="sticky tall view-all-resource" rowspan="2" style="padding-right:4px;">
+        <td class="sticky tall view-all-resource" rowspan="2">
           <div>
             <button>View Other Resources</button>
           </div>
@@ -22,17 +35,17 @@
                 <!-- will be hidden -->
           </div>
         </td>
-        <td *ngFor="let item of daysVal">
+        <td *ngFor="let item of daysVal" class="header-dimensions">
           <div class="weekbus">
             <!-- <b>Mon<br/>23 Oct</b> -->
-            {{item | date:'dMMM' }}
+            {{item | date:'d MMM' }}
           </div>
         </td>
       </tr>
     </thead>
     <tbody>
         <tr class="masterrow_1" *ngFor="let user of userIndividual" (click)="userActivityInfo(user)">
-          <td class="sticky tall">{{user.userFullName}}</td>
+          <td class="sticky tall mike">{{user.userFullName}}</td>
           <td *ngFor="let userhours of user.IndividualHours">
             {{userhours.totalhours}} hrs
           </td>
@@ -41,10 +54,19 @@
         <tr *ngIf="isActive" id="activityRow">
         <td id="userName" colspan="31">Scheduling James Bond</td>
         </tr>
+        <tr>
+          <td class="stickyActivity" *ngIf="isActive">
+              <button class='rmt-large-button'>Add New Activity</button>
+          </td>
+        </tr>
         <tr *ngFor="let activityInfo of useractivityIndividual">
-          <td class="stickyActivity">{{activityInfo.activityname}}</td>
-          <td contenteditable="true" (blur)="ValChanged($event,activityInfo);"  *ngFor="let userInfo of activityInfo.users">
-            {{userInfo.IndividualHours.totalhours}}hrs
+          <td class="stickyActivity activityNM">
+            <a href="#">{{activityInfo.activityname}}</a>
+            <p>LOB</p>
+          </td>
+          <td contenteditable="true" (blur)="ValChanged($event,userInfo);"
+          *ngFor="let userInfo of activityInfo.users">
+            {{userInfo.IndividualHours.totalhours}} hrs
           </td>
         </tr>
     </tbody>

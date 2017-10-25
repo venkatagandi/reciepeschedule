@@ -4,6 +4,7 @@ import { EntitlementService } from './services/entitlement.service';
 import { UserIndividualDayActivityAggregate } from './model/userIndividualDayActivityAggregate';
 import { ResourceIndividualActivityMapping } from './model/resourceindividualactivitymapping';
 import * as _ from "lodash";
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,51 @@ export class AppComponent implements OnInit{
   userIndividual:UserIndividualDayActivityAggregate[]= [];
   useractivityIndividual:any[]=[];
   isActive:boolean=false;
-  public constructor(private entitlementservice:EntitlementService){
 
+  /* button info for forecast mode - weekly,monthly,yearly*/
+  forecastmodes: SelectItem[];
+  selectForecastMode: string='Weekly';
+
+  hoursModes: SelectItem[];
+  selectHourMode:string='hashHours';
+
+  mapModes: SelectItem[];
+  selectMapMode:string='Grid';
+
+
+  public constructor(private entitlementservice:EntitlementService){
+    /* button info for forecast mode - weekly,monthly,yearly*/
+    this.forecastmodes = [];
+    this.forecastmodes.push({label:'Weekly', value:'Weekly'});
+    this.forecastmodes.push({label:'Monthly', value:'Monthly'});
+    this.forecastmodes.push({label:'Yearly', value:'Yearly'});
+
+    this.hoursModes = [];
+    this.hoursModes.push({label:'# Hours', value:'hashHours'});
+    this.hoursModes.push({label:'% Hours', value:'percentHours'});
+
+    this.mapModes = [];
+    this.mapModes.push({label:'Grid', value:'Grid'});
+    this.mapModes.push({label:'Heat/Cool', value:'HeatOrCool'});
+  }
+
+  onSelectForecastModeChange($event:any){
+    console.log(this.selectForecastMode);
+  }
+
+  onSelectHourModeChange($event:any){
+    console.log(this.selectHourMode);
+  }
+
+  onSelectMapModeChange($event:any){
+    console.log(this.selectMapMode);
   }
 
   ngOnInit() {
+
+
+
+
      let entitledreceiveddata:ResourceActivityDaily[]= this.entitlementservice.getEntitlementsData();
      this.entitledData=entitledreceiveddata;
      //console.log('entitled data',this.entitledData);
