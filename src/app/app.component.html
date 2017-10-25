@@ -51,12 +51,22 @@
                 <!-- will be hidden -->
           </div>
         </td>
-        <td *ngFor="let item of daysVal" class="header-dimensions">
-          <div class="weekbus">
-            <!-- <b>Mon<br/>23 Oct</b> -->
-            {{item | date:'d MMM' }}
-          </div>
-        </td>
+        <ng-container *ngIf="selectForecastMode==='Weekly'">
+          <td *ngFor="let item of daysVal" class="header-dimensions">
+            <div class="weekbus">
+              <!-- <b>Mon<br/>23 Oct</b> -->
+              {{item | date:'d MMM' }}
+            </div>
+          </td>
+        </ng-container>
+        <ng-container *ngIf="selectForecastMode==='Monthly'">
+            <td *ngFor="let item of newDaysArray" class="header-dimensions">
+              <div class="weekbus">
+                <!-- <b>Mon<br/>23 Oct</b> -->
+                {{item.startDate | date:'dMMM'}} - {{item.endDate | date:'dMMM'}}
+              </div>
+            </td>
+          </ng-container>
       </tr>
     </thead>
     <tbody>

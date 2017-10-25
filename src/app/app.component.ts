@@ -151,7 +151,8 @@ export class AppComponent implements OnInit{
     let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     days = days.map(p=>{
       var arr:any = p.split('-');
-      let newIndex= arr[0]-1;
+      console.log('myarr',arr[0]);
+      let newIndex= arr[0];
       return `${months[newIndex]}-${p.split('-')[1]}`;
     });
     this.newmonthVal=days;
