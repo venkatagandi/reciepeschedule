@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { EntitlementService } from './services/entitlement.service';
+import { RowComponent } from './row/row.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RowComponent
   ],
   imports: [
     BrowserModule

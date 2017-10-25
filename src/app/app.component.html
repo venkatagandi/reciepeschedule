@@ -31,13 +31,11 @@
       </tr>
     </thead>
     <tbody>
-        <tr class="masterrow_1" *ngFor="let user of entitledData">
-            <td class="sticky tall">{{user.fullname}}</td>
-            <td>8hrs</td>
-            <td>2hrs</td>
-            <td>4hrs</td>
-            <td>3hrs</td>
-            <td>2hrs</td>
+        <tr class="masterrow_1" *ngFor="let user of userIndividual" (click)="userActivityInfo(user)">
+          <td class="sticky tall">{{user.userFullName}}</td>
+          <td *ngFor="let userhours of user.IndividualHours">
+            {{userhours.totalhours}} hrs
+          </td>
         </tr>
     </tbody>
   </table>
