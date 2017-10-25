@@ -54,7 +54,7 @@ tr[class*="master"]>td, tr[class*="child"]>td   {
 .stickyActivity {
     position: absolute;
     width:200px;
-    height:1.2em;
+    height:1.8em;
     font-size: 12px;
 }
 

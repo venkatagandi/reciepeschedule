@@ -37,6 +37,16 @@
             {{userhours.totalhours}} hrs
           </td>
         </tr>
+        <!-- Activity Table -->
+        <tr *ngIf="isActive" id="activityRow">
+        <td id="userName" colspan="31">Scheduling James Bond</td>
+        </tr>
+        <tr *ngFor="let activityInfo of useractivityIndividual">
+          <td class="stickyActivity">{{activityInfo.activityname}}</td>
+          <td contenteditable="true" (blur)="ValChanged($event,activityInfo);"  *ngFor="let userInfo of activityInfo.users">
+            {{userInfo.IndividualHours.totalhours}}hrs
+          </td>
+        </tr>
     </tbody>
   </table>
 </div>

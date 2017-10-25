@@ -3,6 +3,7 @@ import { ResourceActivityDaily } from './model/resourceactvitydaily';
 import { EntitlementService } from './services/entitlement.service';
 import { UserIndividualDayActivityAggregate } from './model/userIndividualDayActivityAggregate';
 import { ResourceIndividualActivityMapping } from './model/resourceindividualactivitymapping';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit{
   daysVal:string[]=[];
   newDaysArray:any[]=[];
   userIndividual:UserIndividualDayActivityAggregate[]= [];
-
+  useractivityIndividual:any[]=[];
+  isActive:boolean=false;
   public constructor(private entitlementservice:EntitlementService){
 
   }
@@ -127,12 +129,8 @@ export class AppComponent implements OnInit{
   }
 
   userActivityInfo(user:UserIndividualDayActivityAggregate) {
-
-    let resourceindividualactivity:ResourceIndividualActivityMapping={
-      activity:undefined,
-      resourcesid:'',
-      date:''
-     };
+    this.isActive= true;
+    let resourceindividualactivity:ResourceIndividualActivityMapping[]=[];
 
      console.log('clicked me');
      console.log(user);
@@ -146,16 +144,42 @@ export class AppComponent implements OnInit{
           for(var propt in r){
             console.log("================2=========");
             console.log(r[propt]);
-
+            r[propt].map(t=> {
+              resourceindividualactivity.push({
+                activityid:<number>t.activityid,
+                activityname:<string>t.activityname,
+                resourcesid:user.resourcesid,
+                IndividualHours:{date:propt,totalhours:t.individualresourcehoursforadate}
+              });
+            });
           }
         })
       }
     });
+    let uniqueActivityVal = resourceindividualactivity.map(item => item.activityname).filter((value, index, self) => self.indexOf(value) === index);
+    console.clear();
+    console.log("==========unique activity details====================");
+    console.log(uniqueActivityVal)
+    console.log("================activity info details================");
+    console.log(resourceindividualactivity);
 
+    this.useractivityIndividual = _.chain(resourceindividualactivity)
+    .groupBy('activityname')
+    .map(function(val, key) {
+        return {
+          activityname: key,
+            users: val
+        };
+    })
+    .value();
+    console.log('useractivityIndividual',this.useractivityIndividual);
+  }
 
-
-
-
-
+  ValChanged($event,activityInfo) {
+    console.clear();
+    console.log('iam clear');
+    console.log($event);
+    console.log('activity Info');
+    console.log(activityInfo);
   }
 }

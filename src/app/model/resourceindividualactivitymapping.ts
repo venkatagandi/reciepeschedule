@@ -1,7 +1,13 @@
 import { Activity } from "./activity";
 
 export interface ResourceIndividualActivityMapping {
-    activity:Activity,
+    activityid:number,
+    activityname:string,
     resourcesid:string,
-    date:string
+    IndividualHours:individualActivityDayHours
+}
+
+export interface individualActivityDayHours {
+    date:string,
+    totalhours:number
 }
